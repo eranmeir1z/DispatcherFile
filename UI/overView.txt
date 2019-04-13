@@ -1,0 +1,60 @@
+﻿Dispatcher over view:
+
+Git Repository: https://github.com/eranmeir1z/Dispatcher.git
+
+3 solutions, 
+- 1 hosted in IIS googleMap - for getting the JSON file via URI and not as a local file,
+  // loadGeoJson() function cant load local file, like file://coordinate.json
+  // so it need to be hostedin IIS
+and for serving the map webpage
+- 1 is regular winforms application - Dispatcher.
+- 1 is a WCF service which returns the distance between 2 coordinates
+
+the IIS hosted website (googleMaps) is getting loaded into the Dispatcher solution Web browser control.
+
+it all starts from 'Form1.cs' > btnShowOnMap_Click
+1) Data Grid View is used to show the agents name and distance.
+
+2) for showing the map, in a webBrowser control its loads a web application page
+* for getting the longitude and latitude, i added to the model "BL\Models\ClosestAgent.cs"
+ToLat and ToLng properties,
+for not showing them in the Data Grid View, i added columns manually and attached to them the right source
+in "Form1.cs" constructor.
+
+3) google maps API key: AIzaSyAUXnAM6fkLHNQl6cfWP8r0zZzkAG_vr5E
+* 12-month free trial, won't auto billed until i give my permission
+
+4) webbrowser control use IE7, and google maps dont support it (it support HTML 5)
+* <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+IE=edge > uses the current version of IE that is installed on the machine.
+needs to be added to the html page in order to show the map in Web Brower control
+
+5)  <script async defer .. </script> The async attribute allows the browser to render the page * while the API loads *.
+
+5) on the map > the source marker will be "var marker = new google.maps.Marker({ position: source, map: map });"
+* source = karmiel, anapah street
+
+6) for importing data we can use https://developers.google.com/maps/documentation/javascript/importing_data
+" If your data is in a file hosted on the same domain as your Maps JavaScript API application, you can load it using 
+the map.data.loadGeoJson() method. "
+* Note: In order to load a json file from another domain, that domain must have enabled Cross-origin resource sharing.
+* or we can set a service that returns the data
+** the simplest way is to use map.data.loadGeoJson() method. 
+
+-- google maps is not allowing file:// protocol. so i had to host the JSON file for 
+-- load it via url - http://localhost/googleMap/coordinates.json
+
+--to mimic the server a like hosted JSON
+--i have hosted the json with this service > ** myjson.com  ** > which hands me a url for that JSON
+--// in real live application, i would have a direct link to that JSON file (the app is hosted in IIS or a like server) and the file must be served by web server
+--// in Form1.cs i would inject the JSON data to local file
+
+7) i used that page for icons https://www.opensourcesolutions.es/en/marker-icons.html
+in real life application, i would have download all icons that i want to use in my application
+
+
+TODO:
+- make the form responsive (on maximaize).
+- show spinner till the maps loads
+
+

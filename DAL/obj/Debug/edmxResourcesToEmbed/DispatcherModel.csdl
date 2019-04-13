@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DispatcherModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tech_agents">
+    <Key>
+      <PropertyRef Name="name" />
+      <PropertyRef Name="longitude" />
+      <PropertyRef Name="latitude" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="longitude" Type="Double" Nullable="false" />
+    <Property Name="latitude" Type="Double" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="DispatcherEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tech_agents" EntityType="Self.tech_agents" />
+  </EntityContainer>
+</Schema>

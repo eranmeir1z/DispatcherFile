@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DispatcherModelStoreContainer" CdmEntityContainer="DispatcherEntities">
+    <EntitySetMapping Name="tech_agents">
+      <EntityTypeMapping TypeName="DispatcherModel.tech_agents">
+        <MappingFragment StoreEntitySet="tech_agents">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

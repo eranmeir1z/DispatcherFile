@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DispatcherModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Dispatcher.dbo.tech_agents' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tech_agents">
+    <Key>
+      <PropertyRef Name="name" />
+      <PropertyRef Name="longitude" />
+      <PropertyRef Name="latitude" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="longitude" Type="float" Nullable="false" />
+    <Property Name="latitude" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="DispatcherModelStoreContainer">
+    <EntitySet Name="tech_agents" EntityType="Self.tech_agents" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tech_agents].[name] AS [name], 
+    [tech_agents].[longitude] AS [longitude], 
+    [tech_agents].[latitude] AS [latitude]
+    FROM [dbo].[tech_agents] AS [tech_agents]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
